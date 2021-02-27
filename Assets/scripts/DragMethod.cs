@@ -4,8 +4,7 @@ using UnityEngine;
 
 interface DragMethod
 {
-    void StartDrag(RaycastHit hitObject);
+    void StartDrag(float distance);
     Vector3 Drag(Touch touch);
-
     void EndDrag();
 }

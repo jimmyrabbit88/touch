@@ -20,8 +20,8 @@ public class distanceFromScreenDrag : DragMethod
         fixedDistance = 0;
     }
 
-    public void StartDrag(RaycastHit hitObject)
+    public void StartDrag(float distance)
     {
-        fixedDistance = hitObject.distance;   
+        fixedDistance = distance;   
     }
 }
