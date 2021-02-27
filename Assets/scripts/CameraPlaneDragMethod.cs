@@ -7,7 +7,6 @@ public class CameraPlaneDragMethod : DragMethod
     GameObject allowedMovablePlane;
     public Vector3 Drag(Touch touch)
     {
-        Debug.Log("allowedMovablePlaneMethod");
         SetMovablePlaneArea();
         Ray moveToRay = Camera.main.ScreenPointToRay(touch.position);
 
@@ -28,11 +27,15 @@ public class CameraPlaneDragMethod : DragMethod
         if (allowedMovablePlane == null)
         {
             allowedMovablePlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            allowedMovablePlane.transform.forward = (Camera.main.transform.position - allowedMovablePlane.transform.position).normalized;
+            allowedMovablePlane.transform.Rotate(Camera.main.transform.right, 90);
+
+            //allowedMovablePlane.transform.up = (Camera.main.transform.position - allowedMovablePlane.transform.position).normalized;
         }
-        if(allowedMovablePlane.activeSelf == false)
+        if (allowedMovablePlane.activeSelf == false)
         {
             allowedMovablePlane.SetActive(true);
-            allowedMovablePlane.transform.up = (Camera.main.transform.position - allowedMovablePlane.transform.position).normalized;
+            
             
         }
 
@@ -40,13 +43,11 @@ public class CameraPlaneDragMethod : DragMethod
 
     private void ClearMovablePlaneArea()
     {
-        Debug.Log("DDD");
         this.allowedMovablePlane.SetActive(false);
     }
 
-    public void StartDrag(RaycastHit hitObject)
+    public void StartDrag(float distance )
     {
-        Debug.Log("ok");
     }
 
     public void EndDrag()
