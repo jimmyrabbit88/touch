@@ -73,6 +73,7 @@
     <Compile Include="Assets\scripts\GestureDetectorLocking.cs" />
     <Compile Include="Assets\scripts\ObjectCamera.cs" />
     <Compile Include="Assets\scripts\TouchManager.cs" />
+    <Compile Include="Assets\scripts\ObjectCapsule.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\scripts\scripts.asmdef" />

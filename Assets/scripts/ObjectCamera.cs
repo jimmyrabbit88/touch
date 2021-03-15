@@ -48,10 +48,7 @@ public class ObjectCamera : MonoBehaviour, i_Controlable
 
     public void FPVRotation(Touch a, Touch b)
     {
-        var x = a.deltaPosition.x/100;
-        var y = a.deltaPosition.y/100;
-        Debug.Log(gameObject.transform.rotation.eulerAngles);
-        gameObject.transform.eulerAngles += new Vector3(y, x, 0);
+        rotationControl.XYRotate(gameObject, a, b);
     }
    
 

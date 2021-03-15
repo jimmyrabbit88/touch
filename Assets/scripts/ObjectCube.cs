@@ -19,17 +19,6 @@ public class ObjectCube : MonoBehaviour, i_Controlable
         dragPosition = transform.position;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    print("collided");
-    //    collided = true;
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    print("left collision");
-    //    collided = false;
-    //}
 
     // Update is called once per frame
     void Update()
@@ -98,7 +87,11 @@ public class ObjectCube : MonoBehaviour, i_Controlable
 
     public void FPVRotation(Touch a, Touch b)
     {
-        throw new NotImplementedException();
+        rotateFunc.XYRotate(gameObject, a, b);
+        var x = a.deltaPosition.x / 100;
+        var y = a.deltaPosition.y / 100;
+        Debug.Log(gameObject.transform.rotation.eulerAngles);
+        gameObject.transform.eulerAngles += new Vector3(y, x, 0);
     }
 
     public void SetSelected(bool setToSelected)
