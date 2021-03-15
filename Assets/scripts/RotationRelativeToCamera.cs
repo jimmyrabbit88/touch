@@ -24,6 +24,13 @@ public class RotateRelativeToCamera : i_ObjectRotation
         }
     }
 
+    public void XYRotate(GameObject gameObject, Touch a, Touch b)
+    {
+        var x = a.deltaPosition.x / 100;
+        var y = a.deltaPosition.y / 100;
+        gameObject.transform.eulerAngles += new Vector3(y, x, 0);
+    }
+
     public void CameraRotate(GameObject gameObject, Touch a, Touch b)
     {
 

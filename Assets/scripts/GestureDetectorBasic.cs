@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//
+//
+// Deprecated use GestureDetectorLocking instead ('',)
+//
+//
 public class GestureDetectorSimple //: iGestureDetector
 {
     private bool[] isActive = new bool[10];

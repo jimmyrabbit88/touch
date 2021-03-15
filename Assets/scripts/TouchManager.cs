@@ -9,16 +9,12 @@ public class TouchManager : MonoBehaviour
     RaycastHit info;
 
     bool firstDrag = true;
+    
+    //Turn these to true to turn on
+    //Accelerometer Stering
     private bool ACCSteering = false;
+    //Gyro First Person Viewing
     private bool GyroLook = false;
-
-    Touch endTouch;
-
-    Touch[] beginTouch = new Touch[10];
-    float[] startTime = new float[10];
-
-    float startingDistance;
-    float lastDistance;
 
     private Gyroscope gyroscope;
     private Quaternion inv;
@@ -126,8 +122,6 @@ public class TouchManager : MonoBehaviour
 
     private void Scale(Touch touchA, Touch touchB)
     {
-        //print("Scale : "+ touchB.position);
-        //float distance = Vector2.Distance(touchA.position, touchB.position);
         if(selectedObject != null)
         {
             selectedObject.Scale(touchA, touchB);
@@ -156,7 +150,7 @@ public class TouchManager : MonoBehaviour
     {
         if(selectedObject != null)
         {
-
+            selectedObject.FPVRotation(a, b);
         }
         else
         {
