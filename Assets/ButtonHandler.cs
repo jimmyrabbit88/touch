@@ -15,4 +15,19 @@ public class ButtonHandler : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void GyroSteer()
+    {
+        Debug.Log("in");
+        
+        //if (object.GetComponent<TouchManager>.GyroSteering)
+        //{
+        //    GetComponent<TouchManager>().GyroSteering = false;
+        //}
+        //else
+        //{
+        //    GetComponent<TouchManager>().GyroSteering = true;
+        //}
+    }
+
 }

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TouchManager : MonoBehaviour
 {
-    iControlable selectedObject;
-    iControlable camera;
+    i_Controlable selectedObject;
+    i_Controlable camera;
     RaycastHit info;
 
     bool firstDrag = true;
+    private bool ACCSteering = false;
+    private bool GyroLook = false;
 
     Touch endTouch;
 
@@ -17,26 +19,49 @@ public class TouchManager : MonoBehaviour
 
     float startingDistance;
     float lastDistance;
-    
+
+    private Gyroscope gyroscope;
+    private Quaternion inv;
 
     GameObject ourCameraPlane;
-    iGestureDetector gd;
+    i_GestureDetector gd;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main.GetComponent<iControlable>();
-        gd = new locking_gesture_detector();
+        camera = Camera.main.GetComponent<i_Controlable>();
+        gd = new GestureDetectorLocking();
+        if (GyroLook)
+        {
+            InitialiseGyro();
+        }
+    }
+
+    private void InitialiseGyro()
+    {
+        print("hasGyro");
+        gyroscope = Input.gyro;
+        gyroscope.enabled = true;
+        inv = Quaternion.Inverse(gyroscope.attitude);
+    
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(ACCSteering){
+            camera.GyroRotate(Input.acceleration);
+        }
+
+        if (GyroLook == true)
+        { 
+            Camera.main.transform.rotation = gyroscope.attitude * inv;
+        }
         
 
         if (Input.touchCount > 0)
         {
-            List<TouchRes> gestureArray = gd.GetGesture(Input.touches);
+            List<TouchResult> gestureArray = gd.GetGesture(Input.touches);
             foreach(var item in gestureArray)
             {
                 switch (item.Type)
@@ -121,7 +146,9 @@ public class TouchManager : MonoBehaviour
         }
         else
         {
-            camera.Rotate(a, b);
+            if(!ACCSteering){
+                camera.Rotate(a, b);
+            }
         }
     }
 
@@ -155,9 +182,9 @@ public class TouchManager : MonoBehaviour
         if (Physics.Raycast(myRay, out info))
         {
             
-            if(info.transform.GetComponent<iControlable>()!= null)
+            if(info.transform.GetComponent<i_Controlable>()!= null)
             {
-                if(info.transform.GetComponent<iControlable>() == selectedObject)
+                if(info.transform.GetComponent<i_Controlable>() == selectedObject)
                 {
                     selectedObject.SetSelected(false);
                     selectedObject = null;
@@ -171,7 +198,7 @@ public class TouchManager : MonoBehaviour
                         selectedObject = null;
                         //selectedObject.SwitchRayCastIO();
                     }
-                    selectedObject = info.transform.GetComponent<iControlable>();
+                    selectedObject = info.transform.GetComponent<i_Controlable>();
                  
                     selectedObject.SetSelected(true);
                 }

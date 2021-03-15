@@ -44,21 +44,21 @@ namespace Tests
             tlres.Add(t2);
             tlres.Add(touchA);
 
-            List<TouchRes> resList = new List<TouchRes>();
-            resList.Add(new TouchRes(0, 3, tlres));
-            resList.Add(new TouchRes(1, 3, tl2));
+            List<TouchResult> resList = new List<TouchResult>();
+            resList.Add(new TouchResult(0, 3, tlres));
+            resList.Add(new TouchResult(1, 3, tl2));
 
 
             //var tl = new List<Touch>();
             //tl.Add(touch);
             //touchGestureList.Add(new TouchRes(touch.fingerId, gesture, tl));
             
-            List<TouchRes> tgl = new List<TouchRes>();
-            tgl.Add(new TouchRes(0, 3, tl1));
-            tgl.Add(new TouchRes(1, 3, tl2));
+            List<TouchResult> tgl = new List<TouchResult>();
+            tgl.Add(new TouchResult(0, 3, tl1));
+            tgl.Add(new TouchResult(1, 3, tl2));
 
 
-            var g = new locking_gesture_detector();
+            var g = new GestureDetectorLocking();
             g.touchGestureList = tgl;
             var actual = g.UpdateListTouches(touchA, touchA);
 
