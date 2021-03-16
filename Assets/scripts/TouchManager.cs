@@ -22,15 +22,23 @@ public class TouchManager : MonoBehaviour
     GameObject ourCameraPlane;
     i_GestureDetector gd;
 
+
+    public void toggleAcc()
+    {
+        ACCSteering = !ACCSteering;
+    }
+
+    public void toggleGyro()
+    {
+        InitialiseGyro();
+        GyroLook = !GyroLook;
+    }
     // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main.GetComponent<i_Controlable>();
         gd = new GestureDetectorLocking();
-        if (GyroLook)
-        {
-            InitialiseGyro();
-        }
+        
     }
 
     private void InitialiseGyro()
