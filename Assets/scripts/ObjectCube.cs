@@ -19,7 +19,6 @@ public class ObjectCube : MonoBehaviour, i_Controlable
         dragPosition = transform.position;
     }
 
-
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +26,22 @@ public class ObjectCube : MonoBehaviour, i_Controlable
         {
             transform.position = Vector3.Lerp(transform.position, dragPosition, 0.05f);
         }
+        else
+        {
+            dragPosition = transform.position;
+        }
     }
+
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("collision");
+    //    collided = true;
+    //}
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("trigger");
+    //    collided = true; ///Change shouldMove
+    //}
 
     public void touched()
     {

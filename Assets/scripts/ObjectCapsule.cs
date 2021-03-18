@@ -28,6 +28,8 @@ public class ObjectCapsule : MonoBehaviour, i_Controlable
         }
     }
 
+
+
     public void touched()
     {
         transform.position += Vector3.up;
